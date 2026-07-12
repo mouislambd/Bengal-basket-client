@@ -32,14 +32,15 @@ export default function Navbar() {
                         <Link href="/about" className="hover:text-amber-300">About</Link>
                         <Link href="/contact" className="hover:text-amber-300">Contact</Link>
 
-
                         {session ? (
                             <>
                                 <Link href="/my-orders" className="hover:text-amber-300">My Orders</Link>
-                                <Link href="/items/add" className="hover:text-amber-300">Add Item</Link>
-                                <Link href="/items/manage" className="hover:text-amber-300">Manage Items</Link>
                                 {isAdmin && (
-                                    <Link href="/admin/orders" className="hover:text-amber-300">Manage Orders</Link>
+                                    <>
+                                        <Link href="/items/add" className="hover:text-amber-300">Add Item</Link>
+                                        <Link href="/items/manage" className="hover:text-amber-300">Manage Items</Link>
+                                        <Link href="/admin/orders" className="hover:text-amber-300">Manage Orders</Link>
+                                    </>
                                 )}
                                 <button
                                     onClick={handleLogout}
@@ -76,10 +77,12 @@ export default function Navbar() {
                         {session ? (
                             <>
                                 <Link href="/my-orders" onClick={() => setIsOpen(false)}>My Orders</Link>
-                                <Link href="/items/add" onClick={() => setIsOpen(false)}>Add Item</Link>
-                                <Link href="/items/manage" onClick={() => setIsOpen(false)}>Manage Items</Link>
                                 {isAdmin && (
-                                    <Link href="/admin/orders" onClick={() => setIsOpen(false)}>Manage Orders</Link>
+                                    <>
+                                        <Link href="/items/add" onClick={() => setIsOpen(false)}>Add Item</Link>
+                                        <Link href="/items/manage" onClick={() => setIsOpen(false)}>Manage Items</Link>
+                                        <Link href="/admin/orders" onClick={() => setIsOpen(false)}>Manage Orders</Link>
+                                    </>
                                 )}
                                 <button onClick={handleLogout} className="text-left">Logout</button>
                             </>
