@@ -39,7 +39,7 @@ export default function ContactPage() {
                         <FiPhone className="text-emerald-800 mt-1" size={20} />
                         <div>
                             <h3 className="font-semibold text-emerald-950">Phone</h3>
-                            <p className="text-gray-600 text-sm">+880 1332-502004</p>
+                            <p className="text-gray-600 text-sm">+880 1873242151</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
