@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FiStar, FiMapPin, FiClock } from "react-icons/fi";
 import { notFound } from "next/navigation";
 import ReviewSection from "@/components/ReviewSection";
+import BuyNowButton from "@/components/BuyNowButton";
 
 async function getFoodItem(id: string): Promise<FoodItem | null> {
     try {
@@ -53,9 +54,7 @@ export default async function FoodDetailsPage({
 
                     <div className="text-3xl font-bold text-emerald-800 mb-6">৳{item.price}</div>
 
-                    <button className="bg-emerald-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition">
-                        Order Now
-                    </button>
+                    <BuyNowButton item={item} />
 
                     <div className="mt-8 border-t pt-6">
                         <h2 className="font-semibold text-lg mb-2 text-emerald-950">Description</h2>
