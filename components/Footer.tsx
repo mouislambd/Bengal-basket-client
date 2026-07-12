@@ -37,7 +37,7 @@ export default function Footer() {
                         <FiMail /> support@bengalbasket.com
                     </p>
                     <p className="flex items-center gap-2 text-sm mb-4">
-                        <FiPhone /> +880 1332-502004
+                        <FiPhone /> +880 1873242151
                     </p>
                     <div className="flex gap-4 text-xl">
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange-400">
