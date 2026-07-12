@@ -4,6 +4,7 @@ import { FiStar, FiMapPin, FiClock } from "react-icons/fi";
 import { notFound } from "next/navigation";
 import ReviewSection from "@/components/ReviewSection";
 import BuyNowButton from "@/components/BuyNowButton";
+import RelatedItems from "@/components/RelatedItems";
 
 async function getFoodItem(id: string): Promise<FoodItem | null> {
     try {
@@ -70,7 +71,7 @@ export default async function FoodDetailsPage({
                     </div>
                 </div>
             </div>
-
+            <RelatedItems category={item.category} currentId={item._id} />
             <ReviewSection foodItemId={item._id} />
         </div>
     );

@@ -60,7 +60,7 @@ export default function ContactPage() {
                             <p className="text-gray-600 text-sm">support@bengalbasket.com</p>
                         </div>
                     </div>
-                    <div className="flex items-start gap-3">
+                     <div className="flex items-start gap-3">
                         <FiPhone className="text-emerald-800 mt-1" size={20} />
                         <div>
                             <h3 className="font-semibold text-emerald-950">Phone</h3>
