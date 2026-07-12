@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FiTruck, FiClock, FiShield, FiStar } from "react-icons/fi";
 import FoodCard from "@/components/FoodCard";
 import { FoodItem } from "@/types";
+import NewsletterForm from "@/components/NewsletterForm";
 
 async function getPopularProducts(): Promise<FoodItem[]> {
   try {
@@ -141,6 +142,7 @@ export default async function Home() {
         </div>
       </section>
 
+      
       {/* 7. Newsletter / CTA Section */}
       <section className="bg-amber-500 py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -148,19 +150,7 @@ export default async function Home() {
           <p className="text-emerald-900 mb-8">
             Subscribe to our newsletter and get 10% off your first order.
           </p>
-          <form className="flex flex-col sm:flex-row gap-3 justify-center">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="px-5 py-3 rounded-lg flex-1 max-w-sm focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="bg-emerald-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-800 transition"
-            >
-              Subscribe
-            </button>
-          </form>
+          <NewsletterForm />
         </div>
       </section>
     </div>
