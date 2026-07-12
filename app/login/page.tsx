@@ -103,7 +103,9 @@ export default function LoginPage() {
                     </Link>
                 </p>
                 <button
-                    onClick={() => authClient.signIn.social({ provider: "google", callbackURL: "http://localhost:3000/" })}
+                    onClick={() => authClient.signIn.social({
+                        provider: "google", callbackURL: window.location.origin
+                    })}
                     type="button"
                     className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2.5 rounded-lg font-medium mb-4 hover:bg-gray-50 transition"
                 >
