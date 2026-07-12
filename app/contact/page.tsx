@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 
 export default function ContactPage() {
@@ -8,14 +9,39 @@ export default function ContactPage() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [sent, setSent] = useState(false);
+    const [error, setError] = useState("");
+    const [sending, setSending] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSent(true);
-        setName("");
-        setEmail("");
-        setMessage("");
-        setTimeout(() => setSent(false), 4000);
+        setError("");
+        setSending(true);
+
+        try {
+            await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
+                {
+                    name: name,
+                    email: email,
+                    message: message,
+                    title: "Bengal Basket Contact Form",
+                    time: new Date().toLocaleString(),
+                },
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
+            );
+
+            setSent(true);
+            setName("");
+            setEmail("");
+            setMessage("");
+            setTimeout(() => setSent(false), 4000);
+        } catch (err) {
+            console.error(err);
+            setError("Failed to send message. Please try again.");
+        } finally {
+            setSending(false);
+        }
     };
 
     return (
@@ -26,7 +52,6 @@ export default function ContactPage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                {/* Contact Info */}
                 <div className="space-y-6">
                     <div className="flex items-start gap-3">
                         <FiMail className="text-emerald-800 mt-1" size={20} />
@@ -39,7 +64,9 @@ export default function ContactPage() {
                         <FiPhone className="text-emerald-800 mt-1" size={20} />
                         <div>
                             <h3 className="font-semibold text-emerald-950">Phone</h3>
-                            <p className="text-gray-600 text-sm">+880 1873242151</p>
+                            <p className="text-gray-600 text-sm">+880 1873242151
+
+                            </p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -51,11 +78,15 @@ export default function ContactPage() {
                     </div>
                 </div>
 
-                {/* Contact Form */}
                 <div className="md:col-span-2">
                     {sent && (
                         <div className="bg-emerald-50 text-emerald-800 text-sm p-3 rounded-md mb-4">
                             Thank you! Your message has been sent.
+                        </div>
+                    )}
+                    {error && (
+                        <div className="bg-red-50 text-red-600 text-sm p-3 rounded-md mb-4">
+                            {error}
                         </div>
                     )}
                     <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-xl border border-gray-200">
@@ -91,9 +122,10 @@ export default function ContactPage() {
                         </div>
                         <button
                             type="submit"
-                            className="bg-emerald-800 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-emerald-700 transition"
+                            disabled={sending}
+                            className="bg-emerald-800 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-emerald-700 transition disabled:opacity-50"
                         >
-                            Send Message
+                            {sending ? "Sending..." : "Send Message"}
                         </button>
                     </form>
                 </div>
